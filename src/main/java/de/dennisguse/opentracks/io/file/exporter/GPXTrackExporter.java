@@ -223,7 +223,7 @@ public class GPXTrackExporter implements TrackExporter {
     public void writeMarker(ZoneOffset zoneOffset, Marker marker) {
         printWriter.println("<wpt " + formatLocation(marker.getLatitude(), marker.getLongitude()) + ">");
         if (marker.hasAltitude()) {
-            printWriter.println("<ele>" + ALTITUDE_FORMAT.format(marker.getAltitude().toM()) + "</ele>");
+            printWriter.println("<ele>" + TrackExporterUtils.ALTITUDE_FORMAT.format(marker.getAltitude().toM()) + "</ele>");
         }
         printWriter.println("<time>" + StringUtils.formatDateTimeIso8601(marker.getTime(), zoneOffset) + "</time>");
         printWriter.println("<name>" + StringUtils.formatCData(marker.getName()) + "</name>");
@@ -353,6 +353,6 @@ public class GPXTrackExporter implements TrackExporter {
     }
 
     private String formatLocation(double latitude, double longitude) {
-        return "lat=\"" + COORDINATE_FORMAT.format(latitude) + "\" lon=\"" + COORDINATE_FORMAT.format(longitude) + "\"";
+        return "lat=\"" + TrackExporterUtils.COORDINATE_FORMAT.format(latitude) + "\" lon=\"" + TrackExporterUtils.COORDINATE_FORMAT.format(longitude) + "\"";
     }
 }
